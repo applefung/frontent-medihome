@@ -1,0 +1,12 @@
+{
+  "name": "medihome",
+  "displayName": "medihome",
+  "expo": {
+    "name": "medihome",
+    "slug": "medihome",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  }
+}
