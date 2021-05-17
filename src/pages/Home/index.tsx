@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, StyleSheet,  Platform, NativeModules, TouchableOpacity } from "react-native";
+import { View, Text, StyleSheet,  Platform, NativeModules, TouchableOpacity, Button, Alert } from "react-native";
 import { TextInput } from 'react-native-paper';
 import { getStatusBarHeight } from 'react-native-status-bar-height';
 import { useDispatch, useSelector } from 'react-redux';
@@ -16,12 +16,15 @@ import { getPharmacy } from '../../actions/pharmacy';
 import { PharmacyType } from '../../types/models/Pharmacy'; 
 import i18n from '../../i18n/index';
 import Spinner from 'react-native-loading-spinner-overlay';
+import { getSearchService } from '../../services/search';
+import { useNavigation } from '@react-navigation/core';
 
 const { StatusBarManager } = NativeModules;
 const STATUSBAR_HEIGHT = Platform.OS === 'ios' ? getStatusBarHeight() : StatusBarManager.HEIGHT;
 
 const HomePage = () => {
     // const { i18n, t } = useTranslation("en");
+    const navigation = useNavigation();
     const [isLoading, setIsLoading] = useState(false);
     const dispatch = useDispatch();
     const availableCarousel:any = useSelector<RootState>(state => state.Carousel.Carousel);
@@ -40,6 +43,17 @@ const HomePage = () => {
         setIsLoading(false);
     };
 
+    const onSubmit = async () => {
+        setIsLoading(true);
+        const resp = await getSearchService("searchKey="+text).catch((error: Error) => {
+            Alert.alert("System Error");
+        });
+        // pass to next page
+        setIsLoading(false);
+        navigation.navigate('ResultList', {product: resp});
+        console.log(resp)
+    };
+
     return (
         <ScrollView style={styles.screen}>
             {
@@ -52,11 +66,20 @@ const HomePage = () => {
             }
             <View style={styles.header}>
                 <View style={styles.searchBar}>
-                    <TextInput
-                        label={'Product Name 產品名稱'}
-                        value={text}
-                        onChangeText={text => setText(text)}
-                    />
+                    <View style={styles.searchBarTextInput}>
+                        <TextInput
+                            label={'Product Name 產品名稱'}
+                            value={text}
+                            onChangeText={text => setText(text)}
+                        />
+                    </View>
+                    <View style={styles.searchBarButton}>
+                        <Button
+                            onPress={onSubmit}
+                            title={i18n.t('submit')}
+                            color="#ffffff"
+                        />
+                    </View>
                 </View>
                 <View style={styles.changeLang}>
                     <TouchableOpacity onPress={() => i18n.changeLanguage('cn')}>
@@ -88,11 +111,24 @@ const styles = StyleSheet.create({
     header: {
         flexDirection: 'row',
         marginVertical: STATUSBAR_HEIGHT,
-        alignItems: 'center'
+        alignItems: 'center',
+        width: '90%'
     },
     searchBar: {
         marginHorizontal: 10,
-        flex: 9
+        flex: 9,
+        flexDirection: 'row',
+        alignItems: 'center'
+    },
+    searchBarTextInput: {
+        width: '50%',
+        flex: 2
+    },
+    searchBarButton: {
+        flex: 1,
+        backgroundColor: '#00d2c3',
+        borderRadius: 5,
+        marginLeft: 5,
     },
     changeLang: {
         flex: 1,

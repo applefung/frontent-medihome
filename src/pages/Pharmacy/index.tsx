@@ -38,8 +38,8 @@ const Pharmacy = ({route}: any) => {
 
   const layout = useWindowDimensions();
 
-  const [index, setIndex] = React.useState(0);
-  const [routes] = React.useState([
+  const [index, setIndex] = useState(0);
+  const [routes] = useState([
     { key: 'home', title: 'Home' },
     { key: 'all', title: 'All' },
     { key: 'comment', title: 'Comment' },

@@ -22,7 +22,10 @@ const PharmacyProductList = ({route}: any) => {
 
     return (
         <ScrollView>
-            <MedicineProductCardContainer items={categorizedProducts}/>
+            {
+                categorizedProducts.length ?
+                <MedicineProductCardContainer items={categorizedProducts}/>: <Text style={styles.noResultText}>{i18n.t('noResult')}</Text>
+            }
         </ScrollView>
     );
 };

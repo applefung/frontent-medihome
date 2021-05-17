@@ -6,6 +6,7 @@ import ProductList from '../pages/ProductList';
 import MedicineProductDetail from '../pages/MedicineProductDetail';
 import Pharmacy from '../pages/Pharmacy';
 import PharmacyProductList from '../pages/PharmacyProductList';
+import ResultList from '../pages/ResultList';
 
 const Stack = createStackNavigator();
 
@@ -48,6 +49,10 @@ const HomeNavigator = () => {
             <Stack.Screen
                 name='PharmacyProductList'
                 component={PharmacyProductList}
+            />
+            <Stack.Screen
+                name='ResultList'
+                component={ResultList}
             />
         </Stack.Navigator>
     );
