@@ -22,7 +22,7 @@ const MedicineProductCard = ({product}: ProductCardProps)=> {
                     <Text style={styles.productNameText}>{i18n.language==='en'?product.title_en:product.title_cn}</Text>
                 </View>
                 <View style={styles.productContainer}>
-                    <Text  style={styles.descriptionText} numberOfLines={5}>{i18n.language==='en'?product.description_en:product.description_cn}</Text>
+                    <Text style={styles.descriptionText} numberOfLines={5}>{i18n.language==='en'?product.description_en:product.description_cn}</Text>
                 </View>
                 <View style={styles.productContainer}>
                     <Text style={styles.redText}>${product.price}</Text>
@@ -43,7 +43,8 @@ const styles = StyleSheet.create({
         marginVertical: 10,
     },
     productContainer:{
-        flexDirection: 'row'
+        flexDirection: 'row',
+        alignItems: 'center'
     },
     oneProductContainer: {
         width: "25%",
@@ -72,7 +73,7 @@ const styles = StyleSheet.create({
     descriptionText: {
         width: '70%',
         marginVertical: 5
-    }
+    },
 });
 
 export default MedicineProductCard;

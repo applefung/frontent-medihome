@@ -1,4 +1,4 @@
-import { CarouselType } from '../types/models/Category';
+import { CategoryType } from '../types/models/Category';
 import { GetCategoryInterfaceDispatchTypes, ActionTypes } from '../types/actionTypes';
 
 type initalStateType = {

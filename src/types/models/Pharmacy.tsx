@@ -14,4 +14,5 @@ export type PharmacyType = {
     image: string;
     tag: string;
     products: ProductType[];
+    isSelected?: boolean;
  };

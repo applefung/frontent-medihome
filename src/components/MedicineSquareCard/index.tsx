@@ -12,7 +12,6 @@ type ProductCardProps = {
 const MedicineSquareCard = ({product}: ProductCardProps)=> {
     const { i18n, t } = useTranslation("en");
     const navigation = useNavigation();
-
     return (
         <TouchableOpacity style={styles.container} onPress={()=>navigation.navigate('MedicineProductDetail', {productId: product.product_id})}>
             {/*// @ts-ignore */}

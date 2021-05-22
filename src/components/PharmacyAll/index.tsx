@@ -9,7 +9,11 @@ const PharmacyAll = ({pharmacy}: any) =>{
         <ScrollView>
             <View style={styles.container}>
                 {
-                    pharmacy.products.map((element: ProductType, index: number)=><MedicineSquareCard product={element} />)
+                    pharmacy.products.map((element: ProductType, index: number)=>(
+                        <View key={index}>
+                            <MedicineSquareCard product={element} />
+                        </View>
+                    ))
                 }
             </View>
         </ScrollView>

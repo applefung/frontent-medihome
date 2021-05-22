@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getProduct } from '../../actions/product';
 import type { RootState } from '../../store/store';
 import MedicineProductCardContainer from '../../components/MedicineProductCardContainer';
+import ProductCardContainer from '../../components/ProductCardContainer';
 import MyCarousel from '../../components/MyCarousel';
 import { useTranslation } from 'react-i18next';
 import Spinner from 'react-native-loading-spinner-overlay';
@@ -15,20 +16,22 @@ const ResultList = ({route}: any) => {
     const [isLoading, setIsLoading] = useState(false);
     const { i18n, t } = useTranslation("en");
     const dispatch = useDispatch();
-    // const products:any = useSelector<RootState>(state=>state.Products.Products);
     const availableCarousel:any = useSelector<RootState>(state => state.Carousel.Carousel);
     const product = route.params.product;
-    console.log('product', product)
 
     const FirstRoute = () => (
-        <View style={{ flex: 1, backgroundColor: '#ff0000', marginTop: 15 }} >
-            {/* <PharmacyHome pharmacy={foundPharmacy}/> */}
+        <View style={{ flex: 1, backgroundColor: '#fafafa', marginTop: 15 }} >
+            {
+                product.product.length ? <MedicineProductCardContainer items={product.product}/>:<Text style={styles.noResultText}>{i18n.t('noResult')}</Text>
+            }
         </View>
       );
       
       const SecondRoute = () => (
-        <View style={{ flex: 1, backgroundColor: '#00ff00' }}>
-            {/* <PharmacyAll pharmacy={foundPharmacy}/> */}
+        <View style={{ flex: 1, backgroundColor: '#fafafa' }}>
+           {
+               product.pharmacy.length ?  <ProductCardContainer items={product.pharmacy}/>:<Text style={styles.noResultText}>{i18n.t('noResult')}</Text>
+           }
         </View>
       );
     
@@ -46,7 +49,7 @@ const ResultList = ({route}: any) => {
   });
 
     return (
-        <ScrollView>
+        <View style={styles.screen}>
             {
                 isLoading?
                 <Spinner
@@ -64,14 +67,14 @@ const ResultList = ({route}: any) => {
                 onIndexChange={setIndex}
                 initialLayout={{ width: layout.width }}
             />
-            {/* {
-                products.length ?  <MedicineProductCardContainer items={products}/>: <Text style={styles.noResultText}>{i18n.t('noResult')}</Text>
-            } */}
-        </ScrollView>
+        </View>
     );
 };
 
 const styles = StyleSheet.create({
+    screen: {
+        flex: 1
+    },
     carouselContainer: {
         alignItems: 'center',
         marginVertical: 10,
@@ -81,7 +84,8 @@ const styles = StyleSheet.create({
     noResultText: {
         textAlign: 'center',
         fontWeight: 'bold',
-        fontSize: 20
+        fontSize: 20,
+        marginTop: 10,
     },
     spinnerTextStyle: {
         color: '#FFF'

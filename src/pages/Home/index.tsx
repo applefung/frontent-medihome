@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, StyleSheet,  Platform, NativeModules, TouchableOpacity, Button, Alert } from "react-native";
+import { View, Text, StyleSheet, Platform, NativeModules, TouchableOpacity, Button, Alert } from "react-native";
 import { TextInput } from 'react-native-paper';
 import { getStatusBarHeight } from 'react-native-status-bar-height';
 import { useDispatch, useSelector } from 'react-redux';
@@ -51,7 +51,6 @@ const HomePage = () => {
         // pass to next page
         setIsLoading(false);
         navigation.navigate('ResultList', {product: resp});
-        console.log(resp)
     };
 
     return (
@@ -71,6 +70,12 @@ const HomePage = () => {
                             label={'Product Name 產品名稱'}
                             value={text}
                             onChangeText={text => setText(text)}
+                            theme={{
+                                colors: {
+                                           placeholder: '#00d2c3', text: '#00d2c3', primary: '#00d2c3',
+                                           background: '#ffffff'
+                                   }
+                             }}
                         />
                     </View>
                     <View style={styles.searchBarButton}>

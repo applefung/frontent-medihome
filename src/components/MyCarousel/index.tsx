@@ -3,7 +3,7 @@ import { View, Image, StyleSheet } from 'react-native';
 import Carousel from 'react-native-snap-carousel';
 import { CarouselType } from '../../types/models/Carousel';
 
-const MyCarousel = ({carouselItems}:CarouselType)=> {
+const MyCarousel = ({carouselItems}:any)=> {
     const [activeIndex, setActiveIndex] = useState(0);
     const [carousel, setCarousel] = useState();
     const _renderItem = ({item, index}:any) => {
@@ -13,7 +13,7 @@ const MyCarousel = ({carouselItems}:CarouselType)=> {
             </View>
         );
     }
- 
+
     return (
         <View>
             <Carousel

@@ -30,35 +30,35 @@ const CategoryContainer = () => {
               },
               {
                   titleEn: 'Topical',
-                  titleCn: '男性用藥',
+                  titleCn: '外科藥物',
                   src: require('../../assets/category/topical.png'),
               },
         ],
         [
             {
-                titleEn: 'Topical',
+                titleEn: 'Male',
                 titleCn: '男性用藥',
-                src: require('../../assets/category/topical.png'),
+                src: require('../../assets/category/male.png'),
             },
             {
-                titleEn: 'Topical',
-                titleCn: '男性用藥',
-                src: require('../../assets/category/topical.png'),
+                titleEn: 'Gynecological',
+                titleCn: '婦科用藥',
+                src: require('../../assets/category/gynecological.png'),
             },
             {
-                titleEn: 'Topical',
-                titleCn: '男性用藥',
-                src: require('../../assets/category/topical.png'),
+                titleEn: 'Ophthalmology',
+                titleCn: '眼科用藥',
+                src: require('../../assets/category/ophthalmology.png'),
             },
             {
-                titleEn: 'Topical',
-                titleCn: '男性用藥',
-                src: require('../../assets/category/topical.png'),
+                titleEn: 'Chronic',
+                titleCn: '慢性藥物',
+                src: require('../../assets/category/chronic.png'),
             },
             {
-                titleEn: 'Topical',
-                titleCn: '男性用藥',
-                src: require('../../assets/category/topical.png'),
+                titleEn: 'Supplement',
+                titleCn: '保健食品', 
+                src: require('../../assets/category/supplement.png'),
             },
         ]
     ];

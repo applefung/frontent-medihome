@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, Image, StyleSheet } from 'react-native';
+import { View, ScrollView, Text, Image, StyleSheet } from 'react-native';
 import MedicineProductCard from '../MedicineProductCard';
 import { ProductType } from '../../types/models/Product';
 
@@ -10,7 +10,7 @@ type MedicineProductCardContainerProps = {
 
 const MedicineProductCardContainer = ({items}: MedicineProductCardContainerProps)=> {
     return (
-        <View>
+        <ScrollView>
             {
                 items.map((element:ProductType, index:number) => {
                     return (
@@ -20,7 +20,7 @@ const MedicineProductCardContainer = ({items}: MedicineProductCardContainerProps
                     );
                 })
             }
-        </View>
+        </ScrollView>
     );
 };
 
