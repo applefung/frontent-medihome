@@ -41,7 +41,7 @@ export default {
         name: '名稱'
     },
     home: {
-        recommendation: '推薦',
+        recommendation: 'Recommendation 推薦',
         productName: '產品名稱'
     },
     pharmacy: {
@@ -49,6 +49,7 @@ export default {
         businessTime: "營業時間",
         contactUs: '聯絡我們',
         addComment: "新增評論",
+        address: "地址",
         bookmark: '收藏',
         removeBookmark: '移除收藏',
         writer: '作者',

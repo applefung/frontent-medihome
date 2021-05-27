@@ -51,7 +51,7 @@ const FriendList = () => {
             {
                 availableChat.length ?
                 availableChat.map((element: ChatType, index: number) => (
-                    <TouchableOpacity key={index} style={styles.oneFriendContainer} onPress={()=>{navigation.navigate('Chat', {pharmacyId: element.pharmacy.pharmacy_id})}}>
+                    <TouchableOpacity key={index} style={styles.oneFriendContainer} onPress={()=>{navigation.navigate('Chat', {pharmacyId: element.pharmacy.pharmacy_id, roomId: element.room_id})}}>
                         <Image style={styles.image} resizeMode="contain" source={{uri: element.pharmacy.image}}></Image>
                         <Text>
                             {i18n.language === 'en'?element.pharmacy.name_en:element.pharmacy.name_cn}

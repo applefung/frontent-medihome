@@ -332,7 +332,7 @@ const ForgotPassword = () => {
                 </View>
 
                 <View style={styles.verificationCodeContainer}>
-                    <Button color={"#ffffff"} title={timer === TIMER_MAX ? i18n.t('forgotPassword.sendVerificationCode') : timer.toString() } disabled={isActive} onPress={onSubmitSendVerificationCode}/>
+                    <Button color={"#000000"} title={timer === TIMER_MAX ? i18n.t('forgotPassword.sendVerificationCode') : timer.toString() } disabled={isActive} onPress={onSubmitSendVerificationCode}/>
                 </View>
 
                 <TouchableOpacity style={styles.submitContainer} onPress={onSubmit}>

@@ -82,7 +82,7 @@ const HomePage = () => {
                         <Button
                             onPress={onSubmit}
                             title={i18n.t('submit')}
-                            color="#ffffff"
+                            color="#000000"
                         />
                     </View>
                 </View>

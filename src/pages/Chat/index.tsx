@@ -15,7 +15,7 @@ const Chat = ({route}: any)=> {
         });
         return ref.current;
     }
-    const pharmacyId =  route.params.pharmacyId;
+    const { pharmacyId, roomId } =  route.params;
     const [user, setUser]=useState<any>("");
     const socket = useRef<any>();
     const dispatch = useDispatch();
@@ -29,9 +29,9 @@ const Chat = ({route}: any)=> {
         setUser(createUser)
         init();
          {/*// @ts-ignore */}
-        socket.current = new SocketIOClient('http://192.168.8.11:3000');
+        socket.current = new SocketIOClient('http://192.168.8.12:3000');
         socket.current.on('connect', () => {
-            socket.current.emit('userJoined', {"message": "", "customerUserId": availableLoginUser.CustomerUser.customer_user_id, "pharmacyId": pharmacyId, "roomId": availableChat.room_id, "userType": "customer"});
+            socket.current.emit('userJoined', {"message": "", "customerUserId": availableLoginUser.CustomerUser.customer_user_id, "pharmacyId": pharmacyId, "roomId": roomId, "userType": "customer"});
             socket.current.on('userJoined', () => {
               
             });
@@ -62,7 +62,7 @@ const Chat = ({route}: any)=> {
 
      const onReceivedMessage =(messagesReceived:any) => {
 
-        if(messagesReceived.from === "doctor")
+        if(messagesReceived.from === "pharmacy")
         {
             storeMessages(messagesReceived.message);
         }
@@ -72,7 +72,7 @@ const Chat = ({route}: any)=> {
 
     const onSend = useCallback((messages = [], roomSendId) => {
         // messages._id = uuidv4();
-        socket.current.emit('message',  {"message": messages[0], "customerUserId": availableLoginUser.CustomerUser.customer_user_id, "pharmacyId": pharmacyId, "roomId": availableChat.room_id, "userType": "customer"});
+        socket.current.emit('message',  {"message": messages[0], "customerUserId": availableLoginUser.CustomerUser.customer_user_id, "pharmacyId": pharmacyId, "roomId": roomId, "userType": "customer"});
         setMessages(previousMessages => GiftedChat.append(previousMessages, messages))
     }, [])
 

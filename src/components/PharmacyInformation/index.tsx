@@ -8,6 +8,7 @@ const PharmacyInformation = ({pharmacy}: any) => {
         <ScrollView>
             <Text style={styles.title}>{i18n.language==='en'?pharmacy.name_en:pharmacy.name_cn}</Text>
             <Text style={styles.normalText}>{i18n.language==='en'?pharmacy.description_en:pharmacy.description_cn}</Text>
+            <Text style={styles.title}>{i18n.t('pharmacy.address')}</Text>
             <Text style={styles.normalText}>{i18n.language==='en'?pharmacy.address_en:pharmacy.address_cn}</Text>
             <Text style={styles.title}>{i18n.t('pharmacy.contact')}</Text>
             <Text style={styles.normalText}>{pharmacy.contact}</Text>

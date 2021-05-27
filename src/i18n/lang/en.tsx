@@ -41,13 +41,14 @@ export default {
         name: 'Name'
     },
     home: {
-        recommendation: 'Recommendation',
+        recommendation: 'Recommendation 推薦',
         productName: 'Product Name'
     },
     pharmacy: {
         contact: "Contact",
         businessTime: "Business Time",
         contactUs: 'Contact Us',
+        address: "Address",
         addComment: "Add Comment",
         bookmark: 'Add to bookmark',
         removeBookmark: 'Remove from bookmark',

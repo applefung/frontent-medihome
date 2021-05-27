@@ -14,6 +14,7 @@ import { useNavigation } from '@react-navigation/core';
 import Spinner from 'react-native-loading-spinner-overlay';
 import { toggleBookmark } from '../../actions/customerUser';
 import _ from 'lodash';
+import { getRoom } from '../../actions/chat';
 
 const Pharmacy = ({route}: any) => {
     const usePrevious = (value: any) => {
@@ -34,6 +35,7 @@ const Pharmacy = ({route}: any) => {
     const prevLoginUser = usePrevious(availableLoginUser);
     const dispatch = useDispatch();
     const foundPharmacy = availablePharmacy.find((element:PharmacyType)=>element.pharmacy_id === parseInt(pharmacyId));
+    const availableChat:any = useSelector<RootState>(state=>state.Chat.Chat);
 
     useEffect(()=>{
       init();
@@ -117,8 +119,11 @@ const Pharmacy = ({route}: any) => {
         return;
     };
     //check room number
+    dispatch(getRoom(availableLoginUser.CustomerUser.customer_user_id, pharmacyId, availableLoginUser.Token)).then(()=>{
+      navigation.navigate('Chat', { pharmacyId: pharmacyId, roomId: availableChat.room_id });
+  });
 
-    navigation.navigate('Chat', { pharmacyId: pharmacyId });
+
   }
 
   const goToAddComment = () => {
@@ -167,7 +172,7 @@ const Pharmacy = ({route}: any) => {
         setIsLoding(false);
         Alert.alert(
           i18n.t('success'),
-          i18n.t('pharmacy.addBookmarkSuccess'),
+          i18n.t('pharmacy.removeBookmarkSuccess'),
           [
             {
               text: i18n.t('ok'),
@@ -185,7 +190,7 @@ const Pharmacy = ({route}: any) => {
         setIsLoding(false);
         Alert.alert(
           i18n.t('success'),
-          i18n.t('pharmacy.removeBookmarkSuccess'),
+          i18n.t('pharmacy.addBookmarkSuccess'),
           [
             {
               text: i18n.t('ok'),

@@ -316,17 +316,17 @@ const ShoppingCart = () => {
             }
             <View style={styles.totalContainer}>
                 <View style={styles.checkboxContainer}>
-                    <Checkbox
+                    {/* <Checkbox
                         status={checked ? 'checked' : 'unchecked'}
                         onPress={selectedAllProduct}
-                    />
+                    /> */}
                 </View>
                 <View style={styles.totalTextContainer}>
                     <Text style={styles.totalText}>{i18n.t('shoppingCart.total')}: </Text>
                     <Text style={styles.sumOfTotalText}>{sumOfProductPrice.toFixed(2)}</Text>
                 </View>
                 <View style={styles.totalButtonContainer}>
-                    <Button color={"#ffffff"} title={i18n.t('shoppingCart.pay')} onPress={goToNextPage}/>
+                    <Button color={"#000000"} title={i18n.t('shoppingCart.pay')} onPress={goToNextPage}/>
                 </View>
             </View> 
         </ScrollView>

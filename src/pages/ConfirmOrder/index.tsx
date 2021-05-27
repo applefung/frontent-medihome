@@ -19,8 +19,8 @@ const ConfirmOrder = ({route}:any)=> {
     const [contactText, setContactText] = useState('');
     const [addressText, setAddressText] = useState('');
     const [remarkText, setRemarkText] = useState('');
-    const [date, setDate] = useState(new Date());
-    const [time, setTime] = useState(new Date());
+    const [date, setDate] = useState('');
+    const [time, setTime] = useState('');
     const [deliveryMode, setDeliveryMode] = useState('delivery');
     const [isLoading, setIsLoading] = useState(false);
     const availableLoginUser:any = useSelector<RootState>(state=>state.Authentication.LoginUser);
@@ -48,8 +48,8 @@ const ConfirmOrder = ({route}:any)=> {
             })
         });
         const productIds = JSON.stringify(productIdsJson);
-        const deliverDate = date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDate();
-        const deliverTime = time.getHours()+"-"+time.getMinutes()+"-"+time.getSeconds();
+        // const deliverDate = date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDate();
+        // const deliverTime = time.getHours()+"-"+time.getMinutes()+"-"+time.getSeconds();
         const customerUserId = availableLoginUser.CustomerUser.customer_user_id;
         const token = availableLoginUser.Token;
         const totalPrice = sumOfTotal.toFixed(2).toString();
@@ -61,7 +61,7 @@ const ConfirmOrder = ({route}:any)=> {
             address: addressText,
             contact: contactText,
             remark: remarkText,
-            deliveryDate: deliverDate+" "+deliverTime,
+            deliveryDate: date+" "+time,
             sumOfTotal: totalPrice.toString(),
         };
 
@@ -165,25 +165,47 @@ const ConfirmOrder = ({route}:any)=> {
                 <View style={styles.dateTimeContainer}>
                     <View style={styles.dateTimeSingleContainer}>
                         <Text style={styles.deliveryTimeText}>{i18n.t('confirmOrder.deliveryDate')}</Text>
-                        <DateTimePicker
+                        <TextInput
+                            label={'Date 日期'}
+                            value={date}
+                            onChangeText={text => setDate(text)}
+                            theme={{
+                                colors: {
+                                            placeholder: '#00d2c3', text: '#00d2c3', primary: '#00d2c3',
+                                            background: '#ffffff'
+                                    }
+                                }}
+                        />  
+                        {/* <DateTimePicker
                             testID="dateTimePicker"
                             value={date}
                             mode={'date'}
                             is24Hour={true}
                             display="default"
                             onChange={onDateChange}
-                        />
+                        /> */}
                     </View>
                     <View style={styles.dateTimeSingleContainer}>
                         <Text style={styles.deliveryTimeText}>{i18n.t('confirmOrder.deliveryTime')}</Text>
-                        <DateTimePicker
+                        <TextInput
+                            label={'Time 時間'}
+                            value={time}
+                            onChangeText={text => setTime(text)}
+                            theme={{
+                                colors: {
+                                            placeholder: '#00d2c3', text: '#00d2c3', primary: '#00d2c3',
+                                            background: '#ffffff'
+                                    }
+                                }}
+                        />  
+                        {/* <DateTimePicker
                             testID="dateTimePicker"
                             value={time}
                             mode={'time'}
                             is24Hour={true}
                             display="default"
                             onChange={onTimeChange}
-                        />
+                        /> */}
                     </View>
                 </View>
                 <View style={styles.paymentMethodContainer}>
@@ -206,7 +228,7 @@ const ConfirmOrder = ({route}:any)=> {
                         <Text style={styles.sumOfTotalText}>{sumOfTotal.toFixed(2)}</Text>
                 </View>
                 <View style={styles.totalButtonContainer}>
-                    <Button color={"#ffffff"} title={i18n.t('shoppingCart.pay')} onPress={submitOrder}/>
+                    <Button color={"#000000"} title={i18n.t('shoppingCart.pay')} onPress={submitOrder}/>
                 </View>
             </View>
         </ScrollView>
